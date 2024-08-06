@@ -60,6 +60,14 @@
       name: mongodb-org-shell
       state: present
 
+  - name: get the catagories count
+    ansible.builtin.command: mongo --host mongodb.shivarampractise.online --quiet --eval 'db.getSiblingDB("catalogue");db.products.count()'
+    register: product_count
+
+  - name: print the count
+    ansible.builtin.debug:
+      msg: "product count: {{product_count}}"
+
 
 
                   
