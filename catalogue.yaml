@@ -48,6 +48,18 @@
   - name: deamon reload and start
     ansible.builtin.systemd_service:
       daemon_reload: true
+  # lets start after data is loaded
+
+  - name: copy mongo repo
+    ansible.builtin.copy:
+      src: mongo.repo
+      dest: /etc/yum.repos.d/mongo.repo
+
+  - name: Insatll mongodb client
+    ansible.builtin.package:
+      name: mongodb-org-shell
+      state: present
+
 
 
                   
